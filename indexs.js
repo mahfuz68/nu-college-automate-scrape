@@ -2,9 +2,8 @@ const puppeteer = require("puppeteer");
 const debug = require("debug")("scraper");
 const fs = require("fs");
 
-let count = 1;
+count = 1;
 const scrape = async () => {
-  let count = 1;
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto("http://www.nubd.info/college/college_details.php");
@@ -44,19 +43,26 @@ const lastPageNumberx = async (page) => {
 };
 
 const extractedEvaluateCall = async (page) => {
-  return await page.evaluate(() => {
+  const response = await page.evaluate((count) => {
     let data = [];
 
     let elements = document.querySelectorAll(".gradeX");
-
+    
     for (let element of elements) {
       let collegeCode = element.children[0].children[0].innerText;
       let collegeName = element.children[1].innerText;
-
+      
       data.push({ collegeCode, collegeName });
+
+      count += 1
     }
-    return data;
-  });
+
+    return {data, count};
+  }, count);
+
+  console.log(response)
+
+  return response;
 };
 
 const addIdFunction = (data) => {
