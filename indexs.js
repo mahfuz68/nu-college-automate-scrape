@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 const debug = require("debug")("scraper");
 const fs = require("fs");
 
-count = 1;
+let count = 1;
 const scrape = async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -14,14 +14,15 @@ const scrape = async () => {
   debug("select per page 100 data");
   const lastPageNumber = await lastPageNumberx(page);
   debug("find out last page number");
-
   var result = [];
 
   for (let i = 0; i < lastPageNumber; i++) {
     // await page.screenshot({ path: `image/screenshot${Date.now()}.png` });
-
-    result = result.concat(await extractedEvaluateCall(page));
-
+    const { data } = await extractedEvaluateCall(page);
+    result = result.concat(data);
+    // count += con;
+    // console.log(con);
+    // console.log(count, "count");
     // console.log(count);
     if (i !== lastPageNumber - 1) {
       await page.click("#dataTables-example_next > a");
@@ -44,26 +45,39 @@ const lastPageNumberx = async (page) => {
 };
 
 const extractedEvaluateCall = async (page) => {
-  const response = await page.evaluate((count) => {
+  const res = await page.evaluate(() => {
     let data = [];
+    const countsForId = [];
 
     let elements = document.querySelectorAll(".gradeX");
-    
-    for (let element of elements) {
+
+    for (let i = 0; i < elements?.length; i++) {
+      let element = elements[i];
+
       let collegeCode = element.children[0].children[0].innerText;
       let collegeName = element.children[1].innerText;
-      
-      data.push({ collegeCode, collegeName });
 
-      count += 1
+      data.push({collegeCode, collegeName})
+      countsForId.push(i+1);
     }
 
-    return {data, count};
-  }, count);
+    // for (let element of elements) {
+    //   let collegeCode = element.children[0].children[0].innerText;
+    //   let collegeName = element.children[1].innerText;
 
-  console.log(response)
+    //   data.push({ collegeCode, collegeName });
+    //   countsForId.push(count2 + 1);
+    // }
+    return { data, count: countsForId };
+  });
+  
+  fs.writeFile("collegeLIstId.txt", JSON.stringify(res.count), (e) => {
+    if (e) {
+      console.log(e);
+    }
+  });
 
-  return response;
+  return { data: res.data };
 };
 
 const addIdFunction = (data) => {
@@ -94,4 +108,5 @@ const addIdFunction = (data) => {
     }
   });
   debug("file saved with data");
+  // console.log(count);
 })();
