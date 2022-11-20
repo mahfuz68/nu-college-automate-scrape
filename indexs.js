@@ -28,6 +28,7 @@ const scrape = async () => {
       await page.click("#dataTables-example_next > a");
     }
   }
+  debug("grab all required data from website");
   await browser.close();
   return result;
 };
@@ -64,8 +65,8 @@ const addIdFunction = (data) => {
   const refinedData = data.map((e) => {
     const cc = {
       id: i,
-      collegeCode: e.collegeCode,
-      collegeName: e.collegeName,
+      value: e.collegeCode,
+      label: e.collegeName,
     };
 
     i += 1;
@@ -80,9 +81,11 @@ const addIdFunction = (data) => {
 (async () => {
   const data = await scrape();
   const newData = addIdFunction(data);
+  debug("add id on all object");
   fs.writeFile("collegeLIst.txt", JSON.stringify(newData), (e) => {
     if (e) {
       console.log(e);
     }
   });
+  debug("file saved with data");
 })();
