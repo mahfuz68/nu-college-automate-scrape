@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 const debug = require("debug")("scraper");
 const fs = require("fs");
 
-count = 1;
+let count = 0;
 const scrape = async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -20,9 +20,10 @@ const scrape = async () => {
   for (let i = 0; i < lastPageNumber; i++) {
     // await page.screenshot({ path: `image/screenshot${Date.now()}.png` });
 
-    result = result.concat(await extractedEvaluateCall(page));
+    const { data, length } = await extractedEvaluateCall(page);
+    result = result.concat(data);
+    count += length;
 
-    // console.log(count);
     if (i !== lastPageNumber - 1) {
       await page.click("#dataTables-example_next > a");
     }
@@ -44,26 +45,22 @@ const lastPageNumberx = async (page) => {
 };
 
 const extractedEvaluateCall = async (page) => {
-  const response = await page.evaluate((count) => {
+  return await page.evaluate((count) => {
     let data = [];
 
-    let elements = document.querySelectorAll(".gradeX");
-    
+    const elements = document.querySelectorAll(".gradeX");
+    const length = elements.length;
+
     for (let element of elements) {
-      let collegeCode = element.children[0].children[0].innerText;
-      let collegeName = element.children[1].innerText;
-      
-      data.push({ collegeCode, collegeName });
+      count += 1;
+      let id = count;
+      let value = element.children[0].children[0].innerText;
+      let label = element.children[1].innerText;
 
-      count += 1
+      data.push({ id, value, label });
     }
-
-    return {data, count};
+    return { data, length };
   }, count);
-
-  console.log(response)
-
-  return response;
 };
 
 const addIdFunction = (data) => {
@@ -85,10 +82,10 @@ const addIdFunction = (data) => {
 //   console.log(rawData);
 // });
 (async () => {
-  const data = await scrape();
-  const newData = addIdFunction(data);
+  const result = await scrape();
+  // const newData = addIdFunction(result);
   debug("add id on all object");
-  fs.writeFile("collegeLIst.txt", JSON.stringify(newData), (e) => {
+  fs.writeFile("collegeLIst.txt", JSON.stringify(result), (e) => {
     if (e) {
       console.log(e);
     }
