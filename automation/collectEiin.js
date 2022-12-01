@@ -1,14 +1,19 @@
 const puppeteer = require("puppeteer");
-const debug = require("debug")("scraper");
 const fs = require("fs");
+const debug = require("debug");
 
 let count = 0;
 const scrape = async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto("https://www.nubd.info/college/college_details.php");
+  await page.goto(
+    "https://eboardresults.com/app/stud/btbl.html?board=comilla&exam=ssc&year=2022&url=/v2/list%3Fid%3Dbtree",
+    {
+      waitUntil: "networkidle0",
+    }
+  );
 
-  debug("go to nu page");
+  debug("go to school list page");
 
   await page.select("select", "100");
   debug("select per page 100 data");
@@ -23,11 +28,13 @@ const scrape = async () => {
     const { data, length } = await extractedEvaluateCall(page);
     result = result.concat(data);
     count += length;
+    await page.screenshot({ path: `image/${i}.png`, fullPage: true });
 
     if (i !== lastPageNumber - 1) {
-      await page.click("#dataTables-example_next > a");
+      await page.click("#btbl_next");
     }
   }
+
   debug("grab all required data from website");
   await browser.close();
   return result;
@@ -35,10 +42,7 @@ const scrape = async () => {
 
 const lastPageNumberx = async (page) => {
   const data = await page.evaluate(() => {
-    const pagination = document.querySelectorAll(".paginate_button");
-    const length = pagination.length;
-    const lastNumber = length - 2;
-    const lastPage = pagination[lastNumber].children[0].innerText;
+    const lastPage = document.querySelectorAll("span")[0].lastChild.innerText;
     return lastPage;
   });
   return data;
@@ -48,44 +52,28 @@ const extractedEvaluateCall = async (page) => {
   return await page.evaluate((count) => {
     let data = [];
 
-    const elements = document.querySelectorAll(".gradeX");
+    const elements = document.querySelectorAll("tbody > tr");
     const length = elements.length;
 
     for (let element of elements) {
       count += 1;
       let id = count;
-      let value = element.children[0].children[0].innerText;
-      let label = element.children[1].innerText;
+      let EIIN = element.children[0].innerText;
+      let schoolName = element.children[2].innerText;
+      let zilla = element.children[3].innerText;
+      let upazila = element.children[4].innerText;
 
-      data.push({ id, value, label });
+      data.push({ id, EIIN, schoolName, zilla, upazila });
     }
     return { data, length };
   }, count);
 };
 
-const addIdFunction = (data) => {
-  let i = 1;
-  const refinedData = data.map((e) => {
-    const cc = {
-      id: i,
-      value: e.collegeCode,
-      label: e.collegeName,
-    };
-
-    i += 1;
-    return cc;
-  });
-  return refinedData;
-};
-
-// scrape().then((rawData) => {
-//   console.log(rawData);
-// });
 (async () => {
   const result = await scrape();
   // const newData = addIdFunction(result);
   debug("add id on all object");
-  fs.writeFile("collegeLIst.txt", JSON.stringify(result), (e) => {
+  fs.writeFile("comillaBoardSchoolList.txt", JSON.stringify(result), (e) => {
     if (e) {
       console.log(e);
     }
