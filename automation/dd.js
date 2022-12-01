@@ -1,5 +1,6 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
+const { roll } = require("./roll/roll");
 
 const scrape = async (rData) => {
   const browser = await puppeteer.launch();
@@ -10,7 +11,7 @@ const scrape = async (rData) => {
 
   for (const roll of rData) {
     await page.type("#roll", roll);
-    await page.click(".button2");
+    await Promise.all([page.waitForNavigation(), page.click(".button2")]);
     const response = await page.evaluate(() => {
       const Roll = document.querySelector("tbody > tr").children[1].innerText;
       const Name = document.querySelector("tbody > tr").children[3].innerText;
@@ -67,7 +68,7 @@ const scrape = async (rData) => {
 
 (async () => {
   const d = ["183502", "183503", "183504"];
-  const response = await scrape(d);
+  const response = await scrape(roll);
   fs.writeFile("result.txt", JSON.stringify(response), (err) => {
     err && console.log(err);
   });

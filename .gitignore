@@ -1,4 +1,7 @@
 node_modules
 image
-*.txt
+*.txt 
 *.png
+
+!comillaBoardSchoolList.txt
+!collegeLIst.txt
