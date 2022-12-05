@@ -1,6 +1,7 @@
 const express = require("express");
 const { default: mongoose, Schema } = require("mongoose");
-const { RollModel } = require("./src/models/rollSChema");
+const { RollModel } = require("./src/models/rollSchema");
+const schoolModel = require("./src/models/schoolSchema");
 
 const app = express();
 app.use(express.json());
@@ -12,21 +13,30 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
   const { name, fatherName, motherName, roll, result } = req.body;
 
-  RollModel.insertMany(
-    { name, fatherName, motherName, roll, result },
-    (err, succ) => {
-      if (err) {
-        console.log(err);
-      } else if (succ) {
-        console.log(succ);
-      }
+  RollModel.insertMany(req.body, (err, res) => {
+    if (err) {
+      console.log(err);
+    } else if (res) {
+      console.log(res);
     }
-  );
-  res.json("data inserted successfully");
+  });
+  res.json(req.body);
+});
+
+app.post("/school", async (req, res) => {
+  const { EIIN, name, examine } = req.body;
+  const schoolEntry = new schoolModel(req.body);
+  try {
+    const data = await schoolEntry.save();
+    res.status(200).json(req.body);
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 const mongoDBUrl =
-  "mongodb+srv://admin:amijani1@cluster0.1c2dp.mongodb.net/scrape?retryWrites=true&w=majority";
+  "mongodb+srv://admin:mahfuz@mahfuz.pute8tu.mongodb.net/scrape";
 
 mongoose
   .connect(mongoDBUrl, {
