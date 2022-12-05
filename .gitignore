@@ -1,6 +1,7 @@
 node_modules
 image
 *.txt 
+*.svg
 *.png
 
 !comillaBoardSchoolList.txt
