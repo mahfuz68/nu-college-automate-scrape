@@ -3,6 +3,7 @@ image
 *.txt 
 *.svg
 *.png
+*.jpg
 
 !comillaBoardSchoolList.txt
 !collegeLIst.txt
