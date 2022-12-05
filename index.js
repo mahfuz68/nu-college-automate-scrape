@@ -1,6 +1,6 @@
 const express = require("express");
 const { default: mongoose, Schema } = require("mongoose");
-const { RollModel } = require("./src/models/rollSchema");
+const { rollModel } = require("./src/models/rollSchema");
 const schoolModel = require("./src/models/schoolSchema");
 
 const app = express();
@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
   const { name, fatherName, motherName, roll, result } = req.body;
 
-  RollModel.insertMany(req.body, (err, res) => {
+  rollModel.insertMany(req.body, (err, res) => {
     if (err) {
       console.log(err);
     } else if (res) {
