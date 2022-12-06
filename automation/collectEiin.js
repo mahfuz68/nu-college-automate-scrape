@@ -30,8 +30,6 @@ const scrape = async () => {
     const { data, length } = await extractedEvaluateCall(page);
     result = result.concat(data);
     count += length;
-    await page.screenshot({ path: `image/${i}.png`, fullPage: true });
-
     if (i !== lastPageNumber - 1) {
       await page.click("#btbl_next");
     }
