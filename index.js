@@ -67,7 +67,7 @@ app.post("/", async (req, res) => {
     console.log(rollSuccess?.roll);
     await schoolModel.updateOne(
       {
-        EIIN: eiin,
+        eiin: eiin,
       },
       {
         $push: {
