@@ -69,6 +69,7 @@ const extractedEvaluateCall = async (page) => {
         data.push({ id, eiin, schoolName, zilla, upazila });
         const cc = { eiin, name: schoolName, zilla, upazila };
         await saveToDB(cc);
+        console.log(cc);
       }
 
       return { data, length };

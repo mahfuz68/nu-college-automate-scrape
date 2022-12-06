@@ -94,7 +94,7 @@ app.post("/school", async (req, res) => {
 });
 
 const mongoDBUrl =
-  "mongodb+srv://mahfuz:mahfuzzz@mazz.oeckh.mongodb.net/ssc22?retryWrites=true&w=majority";
+  "mongodb+srv://mahfuz:mahfuzzz@cluster0.tai23b4.mongodb.net/ssc?retryWrites=true&w=majority";
 // "mongodb+srv://admin:mahfuz@mahfuz.pute8tu.mongodb.net/scrape";
 
 mongoose
