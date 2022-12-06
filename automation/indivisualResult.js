@@ -1,6 +1,5 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
-const { roll } = require("./roll/roll");
 const fetch = require("node-fetch");
 
 const scrape = async (rData, eiin) => {
