@@ -33,7 +33,7 @@ const schoolList = [
 ];
 
 (async () => {
-  for (const data of schoolLIst) {
+  for (const data of schoolList) {
     await scrapeSchoolFull(data?.EIIN);
   }
 })();
