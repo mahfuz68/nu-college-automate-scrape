@@ -4,7 +4,7 @@ const list = require("./list");
 
 const { response } = require("express");
 const { accessSync } = require("fs");
-const scrapeIndividualResult = require("./dd");
+const scrapeIndividualResult = require("./indivisualResult");
 
 const scrapeSchoolFull = async (eiin) => {
   const browser = await puppeteer.launch();
@@ -52,15 +52,11 @@ const scrapeSchoolFull = async (eiin) => {
     return { schoolName, roll, length };
   });
 
-  await page.screenshot({
-    path: "sscScreenshot.png",
-    fullPage: true,
-  });
   await saveToTextFile(response.roll, eiin);
   console.log("file save successfully");
 
   await browser.close();
-  await scrapeIndividualResult(response.roll, eiin);
+  await scrapeIndividualResult(response.roll, parseInt(eiin));
 };
 
 const saveToTextFile = async (data, eiin) => {
@@ -85,8 +81,10 @@ const ll = [
     upazila: "AKHAURA",
   },
 ];
-(async () => {
-  for (const data of ll) {
-    await scrapeSchoolFull(data?.EIIN);
-  }
-})();
+// (async () => {
+//   for (const data of ll) {
+//     await scrapeSchoolFull(data?.EIIN);
+//   }
+// })();
+
+module.exports = scrapeSchoolFull;

@@ -276,10 +276,11 @@ const saveToDB = async (requestData) => {
 // })();
 
 const scrapeIndividualResult = async (data, eiin) => {
-  const res = await scrape(data, eiin);
-  fs.writeFile("result.txt", JSON.stringify(res), (err) => {
-    err && console.log(err);
-  });
+  // const res =
+  await scrape(data, eiin);
+  // fs.writeFile("result.txt", JSON.stringify(res), (err) => {
+  //   err && console.log(err);
+  // });
 };
 
 module.exports = scrapeIndividualResult;
