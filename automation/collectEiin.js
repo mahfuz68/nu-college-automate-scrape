@@ -68,7 +68,7 @@ const extractedEvaluateCall = async (page) => {
 
         data.push({ id, eiin, schoolName, zilla, upazila });
         const cc = { eiin, name: schoolName, zilla, upazila };
-        // await saveToDB(cc);
+        await saveToDB(cc);
       }
 
       return { data, length };
@@ -76,7 +76,7 @@ const extractedEvaluateCall = async (page) => {
     { count }
   );
 
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(500);
   return data;
 };
 

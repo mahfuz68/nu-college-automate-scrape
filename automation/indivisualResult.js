@@ -248,7 +248,7 @@ const scrape = async (rData, eiin) => {
     data.push(response);
 
     console.log("data scraped done");
-    await page.waitForTimeout(500);
+    // await page.waitForTimeout(500);
   }
 
   await browser.close();

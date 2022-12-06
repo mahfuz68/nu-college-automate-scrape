@@ -2,6 +2,20 @@ const scrapeSchoolFull = require("../sscResultSchollWise");
 
 const schoolLIst = [
   {
+    id: 1,
+    EIIN: "103149",
+    schoolName: "GOLKHAR RANI KHAR HIGH SCHOOL",
+    zilla: "BRAHMANBARIA",
+    upazila: "AKHAURA",
+  },
+  {
+    id: 2,
+    EIIN: "103150",
+    schoolName: "NURPUR RUTI ABDUL HAQUE BHUIYA HIGH SCHOOL",
+    zilla: "BRAHMANBARIA",
+    upazila: "AKHAURA",
+  },
+  {
     id: 3,
     EIIN: "103151",
     schoolName: "BANGLADESH RAILWAY GOVT. HIGH SCHOOL, AKHAURA",
@@ -19,13 +33,6 @@ const schoolLIst = [
     id: 5,
     EIIN: "103153",
     schoolName: "SHAHPIR KALLA SHAHID HIGH SCHOOL, AKHAURA",
-    zilla: "BRAHMANBARIA",
-    upazila: "AKHAURA",
-  },
-  {
-    id: 6,
-    EIIN: "103154",
-    schoolName: "DEBGRAM GOVERNMENT PILOT HIGH SCHOOL",
     zilla: "BRAHMANBARIA",
     upazila: "AKHAURA",
   },
