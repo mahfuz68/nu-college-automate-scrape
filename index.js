@@ -1,6 +1,5 @@
 const express = require("express");
 const { default: mongoose, Schema } = require("mongoose");
-const { roll } = require("./automation/roll/roll");
 const { rollModel } = require("./src/models/rollSchema");
 const { schoolModel } = require("./src/models/schoolSchema");
 
