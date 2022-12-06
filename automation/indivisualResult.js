@@ -263,7 +263,7 @@ const saveToDB = async (requestData) => {
     },
   });
   const dd = await res.json();
-  console.log(dd?.roll);
+  console.log(requestData.roll);
 };
 
 // (async () => {

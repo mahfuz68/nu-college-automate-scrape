@@ -12,12 +12,11 @@ app.get("/", (req, res) => {
 
 app.post("/", async (req, res) => {
   const { eiin } = req.body;
-  console.log(typeof eiin);
 
   const rollEntry = new rollModel(req.body);
   try {
     const rollSuccess = await rollEntry.save();
-    console.log(rollSuccess);
+    console.log(rollSuccess?.roll);
     await schoolModel.updateOne(
       {
         EIIN: eiin,
@@ -40,7 +39,7 @@ app.post("/school", async (req, res) => {
   try {
     const data = await schoolEntry.save();
     res.status(200).json("school inserted successfully");
-    console.log(data);
+    console.log(data?.name);
   } catch (err) {
     console.log(err);
   }
