@@ -5,7 +5,7 @@ const schoolSchema = mongoose.Schema({
   name: String,
   zilla: String,
   upazila: String,
-  examine: [{ type: mongoose.Types.ObjectId, ref: "Roll" }],
+  examine: [{ type: mongoose.Types.ObjectId, ref: "Roll22" }],
 });
 
-module.exports.schoolModel = model("School", schoolSchema);
+module.exports.schoolModel = model("School22", schoolSchema);

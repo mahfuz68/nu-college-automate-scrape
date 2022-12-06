@@ -20,4 +20,4 @@ const rollSchema = mongoose.Schema(
   }
 );
 
-module.exports.rollModel = model("Roll", rollSchema);
+module.exports.rollModel = model("Roll22", rollSchema);
