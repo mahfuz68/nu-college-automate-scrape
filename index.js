@@ -28,23 +28,7 @@ app.post("/", async (req, res) => {
         },
       }
     );
-  } catch (err) {
-    console.log(err);
-  }
-  res.json(req.body);
-});
-
-app.post("/update", async (req, res) => {
-  try {
-    await schoolModel.updateOne(
-      { EIIN: 103149 },
-      {
-        $push: {
-          examine: "638ef1fb75664ede8caf6915",
-        },
-      }
-    );
-    res.json("update successfully");
+    res.status(200).json("roll inserted successfully");
   } catch (err) {
     console.log(err);
   }
@@ -55,7 +39,7 @@ app.post("/school", async (req, res) => {
   const schoolEntry = new schoolModel(req.body);
   try {
     const data = await schoolEntry.save();
-    res.status(200).json(req.body);
+    res.status(200).json("school inserted successfully");
     console.log(data);
   } catch (err) {
     console.log(err);

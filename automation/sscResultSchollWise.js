@@ -52,7 +52,7 @@ const scrapeSchoolFull = async (eiin) => {
     return { schoolName, roll, length };
   });
 
-  await saveToTextFile(response.roll, eiin);
+  // await saveToTextFile(response.roll, eiin);
   console.log("file save successfully");
 
   await browser.close();

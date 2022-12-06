@@ -247,7 +247,7 @@ const scrape = async (rData, eiin) => {
     data.push(response);
 
     console.log("data scraped done");
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(500);
   }
 
   await browser.close();
@@ -263,7 +263,7 @@ const saveToDB = async (requestData) => {
     },
   });
   const dd = await res.json();
-  console.log(dd);
+  console.log(dd?.roll);
 };
 
 // (async () => {
