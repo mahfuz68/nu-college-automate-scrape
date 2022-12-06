@@ -12,7 +12,7 @@ const rollSchema = mongoose.Schema(
     institute: String,
     eiin: Number,
     resultType: String,
-    gPA: Number,
+    gpa: Number,
     result: Array,
   },
   {
