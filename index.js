@@ -10,6 +10,54 @@ app.get("/", (req, res) => {
   res.send("hello mahfuz");
 });
 
+app.get("/individual", async (req, res) => {
+  const roll = req.query.roll;
+  const rollNumber = Number(roll);
+  const year = req.query.year;
+  try {
+    const response = await rollModel.find(
+      { roll: rollNumber },
+      {},
+      { maxTimeMS: 1000 }
+    );
+    res.status(200).json({
+      result: response,
+      message: "Success",
+    });
+  } catch (err) {
+    res.status(500).json({ err: "There was an server side error!" });
+  }
+
+  console.log(typeof rollNumber, rollNumber);
+});
+
+app.get("/institution", async (req, res) => {
+  const eiin = req.query.eiin;
+  const eiinNumber = Number(eiin);
+  const year = req.query.year;
+
+  schoolModel
+    .find({ eiin: eiinNumber })
+    .populate("examine", "roll gpa -_id")
+    .maxTimeMS(1000)
+    .select({
+      _id: 0,
+      __v: 0,
+    })
+    .exec((err, data) => {
+      if (err) {
+        res.status(500).json({
+          error: "There was a server side error!",
+        });
+      } else {
+        res.status(200).json({
+          result: data,
+          message: "Success",
+        });
+      }
+    });
+});
+
 app.post("/", async (req, res) => {
   const { eiin } = req.body;
 

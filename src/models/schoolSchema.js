@@ -1,7 +1,7 @@
 const { model, default: mongoose } = require("mongoose");
 
 const schoolSchema = mongoose.Schema({
-  EIIN: Number,
+  eiin: Number,
   name: String,
   zilla: String,
   upazila: String,

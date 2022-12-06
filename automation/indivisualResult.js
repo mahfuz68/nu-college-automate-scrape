@@ -34,7 +34,7 @@ const scrape = async (rData, eiin) => {
         document.querySelector("tbody").children[3].children[3].innerText;
       const attendance =
         document.querySelector("tbody").children[4].children[1].innerText;
-      const gPA =
+      const gpa =
         document.querySelector("tbody").children[4].children[3].innerText;
 
       let result = "";
@@ -234,7 +234,8 @@ const scrape = async (rData, eiin) => {
         motherName,
         type,
         institute,
-        gPA,
+        resultType: attendance,
+        gpa,
         eiin,
         result,
       };

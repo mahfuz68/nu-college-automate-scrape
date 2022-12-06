@@ -11,6 +11,7 @@ const rollSchema = mongoose.Schema(
     type: String,
     institute: String,
     eiin: Number,
+    resultType: String,
     gPA: Number,
     result: Array,
   },

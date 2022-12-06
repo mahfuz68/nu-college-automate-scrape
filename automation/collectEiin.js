@@ -61,13 +61,13 @@ const extractedEvaluateCall = async (page) => {
       for (let element of elements) {
         count += 1;
         let id = count;
-        let EIIN = element.children[0].innerText;
+        let eiin = element.children[0].innerText;
         let schoolName = element.children[2].innerText;
         let zilla = element.children[3].innerText;
         let upazila = element.children[4].innerText;
 
-        data.push({ id, EIIN, schoolName, zilla, upazila });
-        const cc = { EIIN, name: schoolName, zilla, upazila };
+        data.push({ id, eiin, schoolName, zilla, upazila });
+        const cc = { eiin, name: schoolName, zilla, upazila };
         // await saveToDB(cc);
       }
 
@@ -96,10 +96,10 @@ const saveToDB = async (requestData) => {
   const result = await scrape();
   // const newData = addIdFunction(result);
   debug("add id on all object");
-  fs.writeFile("comillaBoardSchoolList.txt", JSON.stringify(result), (e) => {
-    if (e) {
-      console.log(e);
-    }
-  });
+  // fs.writeFile("comillaBoardSchoolList.txt", JSON.stringify(result), (e) => {
+  //   if (e) {
+  //     console.log(e);
+  //   }
+  // });
   debug("file saved with data");
 })();
