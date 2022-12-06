@@ -2,13 +2,6 @@ const scrapeSchoolFull = require("../sscResultSchollWise");
 
 const schoolList = [
   {
-    id: 7,
-    EIIN: "103155",
-    schoolName: "MOGORA HIGH SCHOOL, GONGASAGAR",
-    zilla: "BRAHMANBARIA",
-    upazila: "AKHAURA",
-  },
-  {
     id: 8,
     EIIN: "103156",
     schoolName: "TULAI SHIMUL HIGH SCHOOL, COLONEL BAZAR",
@@ -27,6 +20,13 @@ const schoolList = [
     EIIN: "103158",
     schoolName:
       "RANIKHAR S. A. HANNAN BOHUMUKHI AND KARIGARI HIGH SCHOOL, GHOLKHAR",
+    zilla: "BRAHMANBARIA",
+    upazila: "AKHAURA",
+  },
+  {
+    id: 11,
+    EIIN: "103159",
+    schoolName: "KARMAMOTH HIGH SCHOOL, KARMA MOTH",
     zilla: "BRAHMANBARIA",
     upazila: "AKHAURA",
   },

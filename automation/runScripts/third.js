@@ -2,13 +2,6 @@ const scrapeSchoolFull = require("../sscResultSchollWise");
 
 const schoolLIst = [
   {
-    id: 11,
-    EIIN: "103159",
-    schoolName: "KARMAMOTH HIGH SCHOOL, KARMA MOTH",
-    zilla: "BRAHMANBARIA",
-    upazila: "AKHAURA",
-  },
-  {
     id: 12,
     EIIN: "103161",
     schoolName: "CHHOYGHARIA AL-HAJ SHAH ALAM HIGH SCHOOL",
