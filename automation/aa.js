@@ -4,8 +4,9 @@ const list = require("./list");
 
 const { response } = require("express");
 const { accessSync } = require("fs");
+const scrapeIndividualResult = require("./dd");
 
-const scrape = async (count) => {
+const scrapeSchoolFull = async (eiin) => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
@@ -13,7 +14,7 @@ const scrape = async (count) => {
     waitUntil: "networkidle0",
   });
 
-  await page.type(".input-xlarge", count.toString());
+  await page.type(".input-xlarge", eiin.toString());
   await Promise.all([page.waitForNavigation(), page.click(".btn-primary")]);
   // await page.click(".btn-primary");
 
@@ -55,10 +56,11 @@ const scrape = async (count) => {
     path: "sscScreenshot.png",
     fullPage: true,
   });
-  await saveToTextFile(response.roll, count);
+  await saveToTextFile(response.roll, eiin);
   console.log("file save successfully");
 
   await browser.close();
+  await scrapeIndividualResult(response.roll, eiin);
 };
 
 const saveToTextFile = async (data, eiin) => {
@@ -67,8 +69,24 @@ const saveToTextFile = async (data, eiin) => {
   });
 };
 
+const ll = [
+  {
+    id: 1,
+    EIIN: "103149",
+    schoolName: "GOLKHAR RANI KHAR HIGH SCHOOL",
+    zilla: "BRAHMANBARIA",
+    upazila: "AKHAURA",
+  },
+  {
+    id: 2,
+    EIIN: "103150",
+    schoolName: "NURPUR RUTI ABDUL HAQUE BHUIYA HIGH SCHOOL",
+    zilla: "BRAHMANBARIA",
+    upazila: "AKHAURA",
+  },
+];
 (async () => {
-  for (const data of list) {
-    await scrape(data?.EIIN);
+  for (const data of ll) {
+    await scrapeSchoolFull(data?.EIIN);
   }
 })();

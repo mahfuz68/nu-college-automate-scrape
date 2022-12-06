@@ -1,7 +1,8 @@
 const express = require("express");
 const { default: mongoose, Schema } = require("mongoose");
+const { roll } = require("./automation/roll/roll");
 const { rollModel } = require("./src/models/rollSchema");
-const schoolModel = require("./src/models/schoolSchema");
+const { schoolModel } = require("./src/models/schoolSchema");
 
 const app = express();
 app.use(express.json());
@@ -10,17 +11,44 @@ app.get("/", (req, res) => {
   res.send("hello mahfuz");
 });
 
-app.post("/", (req, res) => {
-  const { name, fatherName, motherName, roll, result } = req.body;
+app.post("/", async (req, res) => {
+  const { eiin } = req.body;
+  console.log(typeof eiin);
 
-  rollModel.insertMany(req.body, (err, res) => {
-    if (err) {
-      console.log(err);
-    } else if (res) {
-      console.log(res);
-    }
-  });
+  const rollEntry = new rollModel(req.body);
+  try {
+    const rollSuccess = await rollEntry.save();
+    console.log(rollSuccess);
+    await schoolModel.updateOne(
+      {
+        EIIN: eiin,
+      },
+      {
+        $push: {
+          examine: rollSuccess._id,
+        },
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
   res.json(req.body);
+});
+
+app.post("/update", async (req, res) => {
+  try {
+    await schoolModel.updateOne(
+      { EIIN: 103149 },
+      {
+        $push: {
+          examine: "638ef1fb75664ede8caf6915",
+        },
+      }
+    );
+    res.json("update successfully");
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.post("/school", async (req, res) => {
