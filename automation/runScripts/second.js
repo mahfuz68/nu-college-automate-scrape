@@ -2,33 +2,32 @@ const scrapeSchoolFull = require("../sscResultSchollWise");
 
 const schoolList = [
   {
-    id: 8,
-    EIIN: "103156",
-    schoolName: "TULAI SHIMUL HIGH SCHOOL, COLONEL BAZAR",
+    id: 40,
+    EIIN: "103212",
+    schoolName: "BRAHMANBARIA IDEAL HIGH ACADEMY",
     zilla: "BRAHMANBARIA",
-    upazila: "AKHAURA",
+    upazila: "BRAHMANBARIA SADAR",
   },
   {
-    id: 9,
-    EIIN: "103157",
-    schoolName: "HIRAPUR SHAHID NOWAB MEMORIAL HIGH SCHOOL",
+    id: 41,
+    EIIN: "103213",
+    schoolName: "GOVERNMENT HAZI ABDUL JALIL HIGH SCHOOL",
     zilla: "BRAHMANBARIA",
-    upazila: "AKHAURA",
+    upazila: "ASHUGANJ",
   },
   {
-    id: 10,
-    EIIN: "103158",
-    schoolName:
-      "RANIKHAR S. A. HANNAN BOHUMUKHI AND KARIGARI HIGH SCHOOL, GHOLKHAR",
+    id: 42,
+    EIIN: "103214",
+    schoolName: "ROWSHAN ARA JALIL GIRLS' HIGH SCHOOL, ASHUGONJ",
     zilla: "BRAHMANBARIA",
-    upazila: "AKHAURA",
+    upazila: "ASHUGANJ",
   },
   {
-    id: 11,
-    EIIN: "103159",
-    schoolName: "KARMAMOTH HIGH SCHOOL, KARMA MOTH",
+    id: 43,
+    EIIN: "103215",
+    schoolName: "RAMKANAI HIGH SCHOOL, BRAHMANBARIA",
     zilla: "BRAHMANBARIA",
-    upazila: "AKHAURA",
+    upazila: "BRAHMANBARIA SADAR",
   },
 ];
 

@@ -2,32 +2,32 @@ const scrapeSchoolFull = require("../sscResultSchollWise");
 
 const schoolLIst = [
   {
-    id: 12,
-    EIIN: "103161",
-    schoolName: "CHHOYGHARIA AL-HAJ SHAH ALAM HIGH SCHOOL",
+    id: 44,
+    EIIN: "103216",
+    schoolName: "SABERA SOBHAN GOVT. GIRLS' HIGH SCHOOL, BRAHMANBARIA",
     zilla: "BRAHMANBARIA",
-    upazila: "AKHAURA",
+    upazila: "BRAHMANBARIA SADAR",
   },
   {
-    id: 13,
-    EIIN: "103162",
-    schoolName: "AMODABAD ALHAJ SHAH ALAM HIGH SCHOOL",
+    id: 45,
+    EIIN: "103217",
+    schoolName: "ANANDAMOYI GIRLS' HIGH SCHOOL, BRAHMANBARIA",
     zilla: "BRAHMANBARIA",
-    upazila: "AKHAURA",
+    upazila: "BRAHMANBARIA SADAR",
   },
   {
-    id: 14,
-    EIIN: "103170",
-    schoolName: "CHHATURA CHANDPUR SCHOOL AND COLLEGE",
+    id: 46,
+    EIIN: "103218",
+    schoolName: "NIAZ MOHAMMAD HIGH SCHOOL, BRAHMANBARIA",
     zilla: "BRAHMANBARIA",
-    upazila: "AKHAURA",
+    upazila: "BRAHMANBARIA SADAR",
   },
   {
-    id: 15,
-    EIIN: "103171",
-    schoolName: "DARIKANDI BADDA ASMATUNNESA HIGH SCHOOL",
+    id: 47,
+    EIIN: "103220",
+    schoolName: "BADHUGHAR MAHBUBUL HUDA HIGH SCHOOL",
     zilla: "BRAHMANBARIA",
-    upazila: "BANCHHARAMPUR",
+    upazila: "BRAHMANBARIA SADAR",
   },
 ];
 
