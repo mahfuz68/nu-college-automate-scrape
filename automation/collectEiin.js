@@ -79,7 +79,7 @@ const extractedEvaluateCall = async (page) => {
 };
 
 const saveToDB = async (requestData) => {
-  const res = await fetch("http://localhost:5000/school", {
+  const res = await fetch("http://localhost:5004/school", {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {
