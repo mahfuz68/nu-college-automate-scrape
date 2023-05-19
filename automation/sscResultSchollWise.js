@@ -9,8 +9,7 @@ const scrapeIndividualResult = require("./indivisualResult");
 const scrapeSchoolFull = async (eiin) => {
   const browser = await puppeteer.launch({
           args: ['--no-sandbox', '--disable-setuid-sandbox'],
-          ignoreHTTPSErrors: true,
-          dumpio: false
+           headless: true,
         });
   const page = await browser.newPage();
 
