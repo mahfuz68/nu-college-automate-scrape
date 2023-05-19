@@ -3,7 +3,11 @@ const fs = require("fs");
 const fetch = require("node-fetch");
 
 const scrape = async (rData, eiin) => {
-  const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+  const browser = await puppeteer.launch({
+          args: ['--no-sandbox', '--disable-setuid-sandbox'],
+          ignoreHTTPSErrors: true,
+          dumpio: false
+        });
   const page = await browser.newPage();
 
   await page.exposeFunction("saveToDB", saveToDB);
