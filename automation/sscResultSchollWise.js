@@ -7,7 +7,11 @@ const { accessSync } = require("fs");
 const scrapeIndividualResult = require("./indivisualResult");
 
 const scrapeSchoolFull = async (eiin) => {
-  const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+  const browser = await puppeteer.launch({
+          args: ['--no-sandbox', '--disable-setuid-sandbox'],
+          ignoreHTTPSErrors: true,
+          dumpio: false
+        });
   const page = await browser.newPage();
 
   await page.goto("https://result19.comillaboard.gov.bd/SSC22", {
