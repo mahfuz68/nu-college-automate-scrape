@@ -256,7 +256,7 @@ const scrape = async (rData, eiin) => {
 };
 
 const saveToDB = async (requestData) => {
-  const res = await fetch("http://localhost:5000/", {
+  const res = await fetch("http://localhost:5004/", {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {
