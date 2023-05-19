@@ -7,8 +7,7 @@ let count = 0;
 const scrape = async () => {
   const browser = await puppeteer.launch({
           args: ['--no-sandbox', '--disable-setuid-sandbox'],
-          ignoreHTTPSErrors: true,
-          dumpio: false
+           headless: true,
         });
   const page = await browser.newPage();
   await page.exposeFunction("saveToDB", saveToDB);
