@@ -5,7 +5,11 @@ const fetch = require("node-fetch");
 
 let count = 0;
 const scrape = async () => {
-  const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+  const browser = await puppeteer.launch({
+          args: ['--no-sandbox', '--disable-setuid-sandbox'],
+          ignoreHTTPSErrors: true,
+          dumpio: false
+        });
   const page = await browser.newPage();
   await page.exposeFunction("saveToDB", saveToDB);
   await page.goto(
