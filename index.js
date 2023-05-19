@@ -105,6 +105,6 @@ mongoose
   .then(() => console.log("mongoDB connection successfully"))
   .catch((e) => console.log(e));
 
-app.listen("5000", () => {
-  console.log("app listen port 5000");
+app.listen("5004", () => {
+  console.log("app listen port 5004");
 });
